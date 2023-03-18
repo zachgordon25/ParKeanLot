@@ -20,13 +20,24 @@ lots.get("/:lotId", (req, res) => {
 });
 
 lots.put("/:lotId", (req, res) => {
-  console.log("Request params:", req.params);
-  console.log("Request body:", req.body);
+  console.log("Req params:", req.params);
+  console.log("Req body:", req.body);
 
   ParkingLot.findOneAndUpdate(
     { lotId: req.params.lotId },
-    { $inc: { numOfEntries: 1, total: req.body.openScore } },
-
+    [
+      {
+        $set: {
+          numOfEntries: { $add: ["$numOfEntries", 1] },
+          total: { $add: ["$total", req.body.openScore] },
+        },
+      },
+      {
+        $set: {
+          averageOccupancy: { $divide: ["$total", "$numOfEntries"] },
+        },
+      },
+    ],
     {
       new: true,
       runValidators: true,
@@ -34,8 +45,9 @@ lots.put("/:lotId", (req, res) => {
   )
     .then((updatedLot) => {
       console.log("Updated lot:", updatedLot);
+      console.log(updatedLot.averageOccupancy);
       if (!updatedLot) {
-        return res.status(404).json({ error: "Parking lot not found" });
+        return res.status(418).json({ error: "Parking lot is not found" });
       }
       res.json({ updatedLot: updatedLot });
     })
