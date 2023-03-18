@@ -1,9 +1,9 @@
-const mongoose = require("mongoos");
+const mongoose = require("mongoose");
 
 const entrySchema = new mongoose.Schema({
   parkingLotId: { type: String, required: true },
   name: { type: String, required: true },
-  zone: { type: String, required: true },
+  value: { type: Number, required: true },
   dateTime: { type: Date, default: Date.now },
 });
 
