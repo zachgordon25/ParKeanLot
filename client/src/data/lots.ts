@@ -1,16 +1,20 @@
 export default [
   {
-    lotId: 1,
-    name: "Lot numero uno",
-    total: 100,
-    numOfEntries: 10,
-    averageOccupancy: 10,
+    lotId: "1",
+    name: "Green Lane Lot",
+    total: 0,
+    numOfEntries: 0,
   },
   {
-    lotId: 2,
-    name: "Lot numeero dos",
-    total: 50,
-    numOfEntries: 20,
-    averageOccupancy: 15,
+    lotId: "2",
+    name: "Kean Hall Lot",
+    total: 0,
+    numOfEntries: 0,
+  },
+  {
+    lotId: "3",
+    name: "East Campus Lot",
+    total: 0,
+    numOfEntries: 0,
   },
 ];

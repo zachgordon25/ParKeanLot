@@ -1,8 +1,6 @@
-import SpotsSlider from "./SpotsSlider";
 import {
   Box,
   Button,
-  ButtonGroup,
   Slider,
   SliderFilledTrack,
   SliderThumb,
@@ -11,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
-import { useState } from "react";
 import React from "react";
 import Axios from "axios";
 import { Lot } from "../hooks/useAllLots";
@@ -24,8 +21,8 @@ const Form = ({ parkingLot }: Props) => {
   //get image path based on openScore
   function getImagePath(openScore: number) {
     var image_path = "../src/assets/parking-" + openScore + ".png";
-    console.log("Image path: %s", image_path);
-    console.log("Open Score: ", openScore);
+    // console.log("Image path: %s", image_path);
+    // console.log("Open Score: ", openScore);
     return image_path;
   }
 
@@ -73,23 +70,36 @@ const Form = ({ parkingLot }: Props) => {
   const [showTooltip, setShowTooltip] = React.useState(false);
   const [sliderLabel, setSliderLabel] = React.useState("");
   const [openScore, setOpenScore] = React.useState(0); // Refer to this const for availability score to send to mongo
-  const [submissionStatus, setSubmissionStatus] =
-    React.useState("Pending Submission");
+  const [submissionStatus, setSubmissionStatus] = React.useState(
+    "Please submit your entry"
+  );
   // API Post Function
   const submitEntry = () => {
-    // Get props from First Stage of Form
-
-    Axios.put("http://localhost:3000/parkinglot/1", {
+    Axios.put(`http://localhost:3000/parkinglot/${parkingLot.lotId}`, {
       parkingLotId: parkingLot.lotId,
       openScore: openScore,
     }).then((response) => {
       setSubmissionStatus("Entry Submitted");
+      alert("Entry Submitted");
+
+      // finally reload the page
+      window.location.reload();
     });
   };
 
   return (
     <>
       <center>
+        <Text fontSize={"30px"}>
+          <b>
+            How busy is the parking lot?
+            <br />
+            <br />
+            Adjust the slider to let us know!
+            <br />
+            <br />
+          </b>
+        </Text>
         <div>
           {/*Image of parking availability will go here */}
           <div>
@@ -101,6 +111,7 @@ const Form = ({ parkingLot }: Props) => {
               />
             </Box>
           </div>
+          <Box padding={5}></Box>
 
           {/*Slider to let user select how busy it is in the lot*/}
           <div>
@@ -110,7 +121,7 @@ const Form = ({ parkingLot }: Props) => {
               min={1}
               max={100}
               padding={2}
-              colorScheme="teal"
+              colorScheme="blue"
               onChangeEnd={(v) => {
                 setSliderValue(v);
                 setOpenScore(getOpenScore(sliderValue));
@@ -128,14 +139,14 @@ const Form = ({ parkingLot }: Props) => {
                 setShowTooltip(false);
               }}
               //step={25}
-              width="300px"
+              width="20vw"
             >
               <SliderTrack>
                 <SliderFilledTrack />
               </SliderTrack>
               <Tooltip
                 hasArrow
-                bg="teal.500"
+                bg="blue.500"
                 color="white"
                 placement="top"
                 isOpen={showTooltip}
@@ -145,20 +156,20 @@ const Form = ({ parkingLot }: Props) => {
               </Tooltip>
             </Slider>
           </div>
-
+          <Box padding={4}></Box>
           {/* Submit Button to Submit Entry*/}
           <center>
             <Button
               onClick={submitEntry}
               padding={2}
               colorScheme="blue"
-              width={200}
+              width={"20vw"}
             >
               Park!
             </Button>
           </center>
           {/*Status Text*/}
-          <Text fontSize="14px" padding={2} color={"white"}>
+          <Text fontSize="14px" padding={2}>
             {submissionStatus}
           </Text>
         </div>
