@@ -6,8 +6,8 @@ import darkLogo from "../assets/dark.png";
 const NavBar = () => {
   const logoSrc = useColorModeValue(darkLogo, lightLogo);
   return (
-    <HStack padding="10px" justifyContent={"space-between"}>
-      <Image src={logoSrc} boxSize="100px" />
+    <HStack padding="5px" justifyContent={"space-between"}>
+      <Image src={logoSrc} boxSize="180" />
       <ColorModeSwitch />
     </HStack>
   );
