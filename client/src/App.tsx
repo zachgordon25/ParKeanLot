@@ -1,16 +1,16 @@
 import "./App.css";
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import { useState } from "react";
 import MainComp from "./components/mainComp";
 import { Lot } from "./hooks/useAllLots";
+import Form from "./components/Form";
 
 function App() {
   const [parkingLot, setParkingLot] = useState<Lot>({} as Lot);
   const handleSelectLot = (lot: Lot | null) => {
     if (lot) {
       setParkingLot(lot);
-      console.log(lot.lotId);
     }
   };
   return (
@@ -28,14 +28,15 @@ function App() {
         <NavBar />
       </GridItem>
       <GridItem gridArea="main">
-        <MainComp selectedLot={parkingLot} onSelectLot={handleSelectLot} />
+        <Box padding={3}>
+          <MainComp selectedLot={parkingLot} onSelectLot={handleSelectLot} />
+        </Box>
       </GridItem>
 
       <Show above="lg">
-        <GridItem gridArea="main">
-          <MainComp selectedLot={parkingLot} onSelectLot={handleSelectLot} />
+        <GridItem gridArea="form">
+          <Form parkingLotId={0} />
         </GridItem>
-        <GridItem gridArea="form">form</GridItem>
       </Show>
     </Grid>
   );
