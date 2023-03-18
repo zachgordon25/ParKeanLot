@@ -3,13 +3,10 @@ import {
   Button,
   Card,
   CardBody,
-  Center,
-  Flex,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  Text,
 } from "@chakra-ui/react";
 import useAllLots, { Lot } from "../hooks/useAllLots";
 import { BsChevronDown } from "react-icons/bs";
@@ -46,7 +43,7 @@ const mainComp = ({ onSelectLot, selectedLot }: Props) => {
 
   return (
     <>
-      <Center paddingY={5}>
+      <Box paddingY={3}>
         <Menu>
           <MenuButton
             fontSize={25}
@@ -64,12 +61,8 @@ const mainComp = ({ onSelectLot, selectedLot }: Props) => {
             ))}
           </MenuList>
         </Menu>
-      </Center>
-      <Card height="60vh">
-        <CardBody>
-          <RenderCars average={parkingLot.averageOccupancy} />
-        </CardBody>
-      </Card>
+      </Box>
+      {parkingLot.lotId && <RenderCars parkinglot={parkingLot} />}
     </>
   );
 };
