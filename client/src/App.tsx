@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 import SpotsSlider from './components/SpotsSlider';
+import Form from './components/Form';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <GridItem gridArea="form">form</GridItem>
       </Show>
       <br></br>
-              <SpotsSlider/>
+              <Form/>
 
     </Grid>
     
