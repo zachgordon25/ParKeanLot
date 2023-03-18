@@ -6,11 +6,18 @@ const ParkingLot = require("../models/parkingLot.js");
 // ParkingLot.insertMany(newLot).then(() => console.log("seeded"));
 
 lots.get("/:lotId", (req, res) => {
-  ParkingLot.findOne({ lotId: req.params.lotId }).then((foundLot) =>
-    res.json({
-      foundLot: foundLot,
-    })
-  );
+  ParkingLot.findOne({ lotId: req.params.lotId }).then((foundLot) => {
+    const { _id, lotId, name, total, numOfEntries, averageOccupancy } =
+      foundLot;
+    const parkingLotObj = {
+      lotId,
+      name,
+      total,
+      numOfEntries,
+      averageOccupancy,
+    };
+    res.send(parkingLotObj);
+  });
 });
 
 lots.put("/:lotId/add", (req, res) => {
