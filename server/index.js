@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const methodOverride = require("method-override");
 const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
@@ -14,7 +15,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use("/parkinglot", parkingLotController);
-
 
 app.get("/", (req, res) => res.send("Hello World!"));
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

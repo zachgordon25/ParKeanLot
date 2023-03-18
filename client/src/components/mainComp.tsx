@@ -34,6 +34,7 @@ const mainComp = ({ onSelectLot, selectedLot }: Props) => {
         .get(`http://localhost:3000/parkinglot/${lot.lotId}`)
         .then((response) => {
           setParkingLot(response.data);
+          console.log(response.data);
         })
         .catch((error) => {
           console.error(error);
