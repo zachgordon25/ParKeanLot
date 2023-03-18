@@ -35,7 +35,7 @@ function App() {
 
       <Show above="lg">
         <GridItem gridArea="form">
-          <Form parkingLotId={0} />
+          <Form parkingLot={parkingLot} />
         </GridItem>
       </Show>
     </Grid>
