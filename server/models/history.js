@@ -1,4 +1,4 @@
-const mongoose = require("mongoos");
+const mongoose = require("mongoose");
 
 const historySchema = new mongoose.Schema({
   parkingLotId: { type: String, required: true },
