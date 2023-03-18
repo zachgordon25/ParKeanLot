@@ -1,5 +1,5 @@
 import "./App.css";
-import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Button, Center, Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import { useState } from "react";
 import MainComp from "./components/mainComp";
@@ -13,32 +13,46 @@ function App() {
       setParkingLot(lot);
     }
   };
-  return (
-    <Grid
-      templateAreas={{
-        base: `"nav" "main"`,
-        lg: '"nav nav" "main form"',
-      }}
-      templateColumns={{
-        base: "1fr",
-        lg: "50vw 1fr",
-      }}
-    >
-      <GridItem gridArea="nav">
-        <NavBar />
-      </GridItem>
-      <GridItem gridArea="main">
-        <Box padding={3}>
-          <MainComp selectedLot={parkingLot} onSelectLot={handleSelectLot} />
-        </Box>
-      </GridItem>
+  const [showForm, setShowForm] = useState(false);
 
-      <Show above="lg">
-        <GridItem gridArea="form">
-          <Form parkingLot={parkingLot} />
+  // Show form display
+  function showFormFun() {
+    if (!showForm && parkingLot.lotId != null) setShowForm(true);
+  }
+
+  // Hide form display
+  function hideFormFun() {
+    if (showForm) setShowForm(false);
+  }
+  return (
+    <>
+      <Grid
+        templateAreas={{
+          base: `"nav" "main"`,
+        }}
+        templateColumns={{
+          base: "1fr",
+        }}
+      >
+        <GridItem gridArea="nav">
+          <NavBar />
         </GridItem>
-      </Show>
-    </Grid>
+        <GridItem gridArea="main">
+          <Box padding={3}>
+            <MainComp selectedLot={parkingLot} onSelectLot={handleSelectLot} />
+          </Box>
+        </GridItem>
+        {showForm && <Form parkingLot={parkingLot} />}
+        <GridItem>
+          <Center>
+            <Button onClick={hideFormFun} mr={20}>
+              Back
+            </Button>
+            <Button onClick={showFormFun}>Next</Button>
+          </Center>
+        </GridItem>
+      </Grid>
+    </>
   );
 }
 

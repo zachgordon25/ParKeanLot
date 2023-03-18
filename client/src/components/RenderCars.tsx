@@ -42,20 +42,23 @@ const RenderCars = ({ parkinglot }: Props) => {
       <Center>
         <Heading padding={3}>{parkinglot.name}</Heading>
       </Center>
-      <Card>
-        <CardBody>
-          <SimpleGrid columns={5}>
-            {carImageSRC.map((car, index) => (
-              <GridItem key={index}>
-                <Image src={car} alt="car" />
-              </GridItem>
-            ))}
-          </SimpleGrid>
-        </CardBody>
-      </Card>
       <Center>
-        <Text>Crowd sourced value: {parkinglot.averageOccupancy}</Text>
+        <Card width={"50vw"}>
+          <CardBody>
+            <SimpleGrid columns={5}>
+              {carImageSRC.map((car, index) => (
+                <GridItem key={index}>
+                  <Image src={car} alt="car" />
+                </GridItem>
+              ))}
+            </SimpleGrid>
+          </CardBody>
+        </Card>
       </Center>
+
+      <Text textAlign={"center"}>
+        Crowd sourced value: {parkinglot.averageOccupancy}
+      </Text>
     </>
   );
 };

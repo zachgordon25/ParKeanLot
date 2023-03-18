@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardBody,
+  Center,
   Menu,
   MenuButton,
   MenuItem,
@@ -43,25 +44,27 @@ const mainComp = ({ onSelectLot, selectedLot }: Props) => {
 
   return (
     <>
-      <Box paddingY={3}>
-        <Menu>
-          <MenuButton
-            fontSize={25}
-            width={"auto"}
-            as={Button}
-            rightIcon={<BsChevronDown />}
-          >
-            {selectedLot?.name || "Select Parking Lot"}
-          </MenuButton>
-          <MenuList>
-            {lots.map((lot) => (
-              <MenuItem key={lot.lotId} onClick={() => handleSelectLot(lot)}>
-                {lot.name}
-              </MenuItem>
-            ))}
-          </MenuList>
-        </Menu>
-      </Box>
+      <Center>
+        <Box paddingY={3}>
+          <Menu>
+            <MenuButton
+              fontSize={30}
+              width={"auto"}
+              as={Button}
+              rightIcon={<BsChevronDown />}
+            >
+              {selectedLot?.name || "Select Parking Lot"}
+            </MenuButton>
+            <MenuList>
+              {lots.map((lot) => (
+                <MenuItem key={lot.lotId} onClick={() => handleSelectLot(lot)}>
+                  {lot.name}
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
+        </Box>
+      </Center>
       {parkingLot.lotId && <RenderCars parkinglot={parkingLot} />}
     </>
   );
