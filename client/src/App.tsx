@@ -1,5 +1,9 @@
-import "./App.css";
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { Grid, GridItem, Show } from '@chakra-ui/react';
+import SpotsSlider from './components/SpotsSlider';
 
 function App() {
   return (
@@ -19,7 +23,11 @@ function App() {
         <GridItem gridArea="main">main</GridItem>
         <GridItem gridArea="form">form</GridItem>
       </Show>
+      <br></br>
+              <SpotsSlider/>
+
     </Grid>
+    
   );
 }
 
