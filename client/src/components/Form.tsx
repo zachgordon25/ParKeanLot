@@ -78,7 +78,7 @@ const Form = ({ parkingLotId }: FormProps) => {
   const submitEntry = () => {
     // Get props from First Stage of Form
 
-    Axios.put("http://localhost:5173/setEntry", {
+    Axios.put("http://localhost:3000/parkinglot/1", {
       parkingLotId: parkingLotId,
       openScore: openScore,
     }).then((response) => {

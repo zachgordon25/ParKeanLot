@@ -7,8 +7,7 @@ const ParkingLot = require("../models/parkingLot.js");
 
 lots.get("/:lotId", (req, res) => {
   ParkingLot.findOne({ lotId: req.params.lotId }).then((foundLot) => {
-    const { _id, lotId, name, total, numOfEntries, averageOccupancy } =
-      foundLot;
+    const { lotId, name, total, numOfEntries, averageOccupancy } = foundLot;
     const parkingLotObj = {
       lotId,
       name,
@@ -26,7 +25,8 @@ lots.put("/:lotId", (req, res) => {
 
   ParkingLot.findOneAndUpdate(
     { lotId: req.params.lotId },
-    { $inc: { numOfEntries: 1 } },
+    { $inc: { numOfEntries: 1, total: req.body.openScore } },
+
     {
       new: true,
       runValidators: true,
