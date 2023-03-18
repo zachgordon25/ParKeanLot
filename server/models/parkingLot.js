@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const parkinglotSchema = new mongoose.Schema({
+  lotId: { type: String, required: true },
   name: { type: String, required: true },
   total: { type: Number, required: true },
   numOfEntries: { type: Number, required: true },
