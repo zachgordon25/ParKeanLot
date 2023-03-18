@@ -48,7 +48,7 @@ const mainComp = ({ onSelectLot, selectedLot }: Props) => {
       <Center paddingY={5}>
         <Menu>
           <MenuButton
-            fontSize={50}
+            fontSize={25}
             width={"auto"}
             as={Button}
             rightIcon={<BsChevronDown />}
