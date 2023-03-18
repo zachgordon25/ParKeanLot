@@ -1,33 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Grid, GridItem, Show } from '@chakra-ui/react';
-import SpotsSlider from './components/SpotsSlider';
+import "./App.css";
+import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
+import NavBar from "./components/NavBar";
+import { useState } from "react";
+import MainComp from "./components/mainComp";
+import { Lot } from "./hooks/useAllLots";
+import Form from "./components/Form";
 
 function App() {
+  const [parkingLot, setParkingLot] = useState<Lot>({} as Lot);
+  const handleSelectLot = (lot: Lot | null) => {
+    if (lot) {
+      setParkingLot(lot);
+    }
+  };
   return (
     <Grid
       templateAreas={{
         base: `"nav" "main"`,
-        lg: '"nav nav nav" "locator main form"',
+        lg: '"nav nav" "main form"',
       }}
       templateColumns={{
         base: "1fr",
-        lg: "400px 50% 400px",
+        lg: "50vw 1fr",
       }}
     >
-      <GridItem gridArea="nav">Nav</GridItem>
-      <GridItem gridArea="locator">locator</GridItem>
-      <Show above="lg">
-        <GridItem gridArea="main">main</GridItem>
-        <GridItem gridArea="form">form</GridItem>
-      </Show>
-      <br></br>
-              <SpotsSlider/>
+      <GridItem gridArea="nav">
+        <NavBar />
+      </GridItem>
+      <GridItem gridArea="main">
+        <Box padding={3}>
+          <MainComp selectedLot={parkingLot} onSelectLot={handleSelectLot} />
+        </Box>
+      </GridItem>
 
+      <Show above="lg">
+        <GridItem gridArea="form">
+          <Form parkingLotId={0} />
+        </GridItem>
+      </Show>
     </Grid>
-    
   );
 }
 
