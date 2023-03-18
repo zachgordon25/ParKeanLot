@@ -1,20 +1,34 @@
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react'
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import SpotsSlider from './components/SpotsSlider'
 import viteLogo from '/vite.svg'
+import './App.css'
+import { Grid, GridItem, Show } from '@chakra-ui/react';
+import SpotsSlider from './components/SpotsSlider';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-      
-        <SpotsSlider/>
-      </div>
-    </div>
-  )
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`,
+        lg: '"nav nav nav" "locator main form"',
+      }}
+      templateColumns={{
+        base: "1fr",
+        lg: "400px 50% 400px",
+      }}
+    >
+      <GridItem gridArea="nav">Nav</GridItem>
+      <GridItem gridArea="locator">locator</GridItem>
+      <Show above="lg">
+        <GridItem gridArea="main">main</GridItem>
+        <GridItem gridArea="form">form</GridItem>
+      </Show>
+      <br></br>
+              <SpotsSlider/>
+
+    </Grid>
+    
+  );
 }
 
-export default App
+export default App;
