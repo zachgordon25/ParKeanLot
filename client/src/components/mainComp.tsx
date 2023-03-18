@@ -47,10 +47,15 @@ const mainComp = ({ onSelectLot, selectedLot }: Props) => {
     <>
       <Center paddingY={5}>
         <Menu>
-          <MenuButton width={"30vw"} as={Button} rightIcon={<BsChevronDown />}>
+          <MenuButton
+            fontSize={50}
+            width={"auto"}
+            as={Button}
+            rightIcon={<BsChevronDown />}
+          >
             {selectedLot?.name || "Select Parking Lot"}
           </MenuButton>
-          <MenuList width={"30vw"}>
+          <MenuList>
             {lots.map((lot) => (
               <MenuItem key={lot.lotId} onClick={() => handleSelectLot(lot)}>
                 {lot.name}
