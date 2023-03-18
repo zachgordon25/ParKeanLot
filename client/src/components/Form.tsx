@@ -14,12 +14,13 @@ import { Text } from "@chakra-ui/react";
 import { useState } from "react";
 import React from "react";
 import Axios from "axios";
+import { Lot } from "../hooks/useAllLots";
 
 // Form Interface
-interface FormProps {
-  parkingLotId: number;
+interface Props {
+  parkingLot: Lot;
 }
-const Form = ({ parkingLotId }: FormProps) => {
+const Form = ({ parkingLot }: Props) => {
   //get image path based on openScore
   function getImagePath(openScore: number) {
     var image_path = "../src/assets/parking-" + openScore + ".png";
@@ -79,7 +80,7 @@ const Form = ({ parkingLotId }: FormProps) => {
     // Get props from First Stage of Form
 
     Axios.put("http://localhost:3000/parkinglot/1", {
-      parkingLotId: parkingLotId,
+      parkingLotId: parkingLot.lotId,
       openScore: openScore,
     }).then((response) => {
       setSubmissionStatus("Entry Submitted");
