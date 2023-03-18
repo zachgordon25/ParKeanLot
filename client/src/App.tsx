@@ -1,6 +1,8 @@
 import "./App.css";
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
+import Form from "./components/Form";
+import SpotsSlider from "./components/SpotsSlider";
 
 function App() {
   return (
@@ -23,8 +25,7 @@ function App() {
         <GridItem gridArea="form">form</GridItem>
       </Show>
       <br></br>
-              <SpotsSlider/>
-
+      <Form parkingLotId={1} />
     </Grid>
   );
 }

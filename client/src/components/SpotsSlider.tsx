@@ -1,4 +1,5 @@
-import React from "react";
+import React, { createContext } from "react";
+import Form from "./Form";
 import { Tooltip } from "@chakra-ui/react";
 import {
   Slider,
@@ -63,9 +64,6 @@ function SpotsSlider() {
 
   return (
     <>
-      {/*Label for Slider Values - WILL REPLACE WITH IMAGE IF WE HAVE TIME*/}
-      <p>{getLabel(sliderValue)}</p>
-
       {/*Slider Portion*/}
       <Slider
         id="slider"
