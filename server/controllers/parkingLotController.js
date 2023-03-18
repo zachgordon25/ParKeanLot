@@ -13,13 +13,13 @@ lots.get("/:lotId", (req, res) => {
   );
 });
 
-lots.put("/:lotId/add", (req, res) => {
+lots.put("/:lotId", (req, res) => {
   console.log("Request params:", req.params);
   console.log("Request body:", req.body);
 
   ParkingLot.findOneAndUpdate(
     { lotId: req.params.lotId },
-    { $inc: { total: 1 } },
+    { $inc: { numOfEntries: 1 } },
     {
       new: true,
       runValidators: true,
@@ -27,7 +27,6 @@ lots.put("/:lotId/add", (req, res) => {
   )
     .then((updatedLot) => {
       console.log("Updated lot:", updatedLot);
-
       if (!updatedLot) {
         return res.status(404).json({ error: "Parking lot not found" });
       }

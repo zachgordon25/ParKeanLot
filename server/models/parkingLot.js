@@ -8,5 +8,12 @@ const parkinglotSchema = new mongoose.Schema({
   averageOccupancy: { type: Number, default: 0, required: true },
 });
 
+parkinglotSchema.pre("save", (next) => {
+  if (this.numOfEntries) {
+    this.averageOccupancy = this.total / this.numOfEntries;
+  }
+  next();
+});
+
 const ParkingLot = mongoose.model("ParkingLot", parkinglotSchema);
 module.exports = ParkingLot;
