@@ -11,4 +11,10 @@ entries.get("/:lotId", (req, res) => {
   });
 });
 
+entries.post("/", (req, res) => {
+  Entry.create(req.body).then((createdEntry) => {
+    res.status(200).json(createdEntry);
+  });
+});
+
 module.exports = entries;
