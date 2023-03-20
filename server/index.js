@@ -9,6 +9,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 const parkingLotController = require("./controllers/parkingLotController.js");
 const entriesController = require("./controllers/entriesController.js");
+const historyController = require("./controllers/historyController.js");
 
 app.use(cors());
 app.use(methodOverride("_method"));
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use("/parkinglot", parkingLotController);
 app.use("/entries", entriesController);
+app.use("/history", historyController);
 
 app.get("/", (req, res) => res.send("Hello World!"));
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
