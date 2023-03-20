@@ -2,6 +2,12 @@ const express = require("express");
 const entries = express.Router();
 const Entry = require("../models/entries.js");
 
+entries.get("/", (req, res) => {
+  Entry.find({}).then((foundEntry) => {
+    res.json(foundEntry);
+  });
+});
+
 entries.get("/:lotId", (req, res) => {
   Entry.find({
     lotId: req.params.lotId,
