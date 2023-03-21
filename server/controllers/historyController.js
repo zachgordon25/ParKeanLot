@@ -1,8 +1,8 @@
 const express = require("express");
 const history = express.Router();
 
-const History = require("../models/history.js");
 const Entry = require("../models/entries.js");
+const History = require("../models/history.js");
 
 history.post("/", (req, res) => {
   History.create(req.body).then((createdHistory) => {
