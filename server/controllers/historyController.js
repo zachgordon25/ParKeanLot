@@ -1,7 +1,14 @@
 const express = require("express");
 const history = express.Router();
+
 const History = require("../models/history.js");
 const Entry = require("../models/entries.js");
+
+history.post("/", (req, res) => {
+  History.create(req.body).then((createdHistory) => {
+    res.status(200).json(createdHistory);
+  });
+});
 
 history.post("/copy", async (req, res) => {
   try {
@@ -16,12 +23,6 @@ history.post("/copy", async (req, res) => {
       .status(500)
       .json({ error: "An error occurred while duplicating data." });
   }
-});
-
-history.post("/", (req, res) => {
-  History.create(req.body).then((createdHistory) => {
-    res.status(200).json(createdHistory);
-  });
 });
 
 history.delete("/", (req, res) => {

@@ -1,5 +1,6 @@
 const express = require("express");
 const entries = express.Router();
+
 const Entry = require("../models/entries.js");
 
 entries.get("/", (req, res) => {
