@@ -17,9 +17,9 @@ const historyController = require("./controllers/historyController.js");
 const parkingLotController = require("./controllers/parkingLotController.js");
 
 app.use(cors());
-app.use(methodOverride("_method"));
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 
 app.use("/entries", entriesController);
 app.use("/history", historyController);
